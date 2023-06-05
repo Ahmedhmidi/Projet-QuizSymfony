@@ -1,0 +1,353 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+<html>
+{% if app.user.name != 'Admin' %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!-- swiper css link  -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+   
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style2.css">
+   <link rel="stylesheet" href="css/style3.css">
+   <link rel="stylesheet" href="css/style5.css">
+
+
+</head>
+
+<body>
+
+
+<header>
+		<a href="{{ path('Home') }}" class="logo"><i class="ri-home-heart-fill"></i><span>Quiz</span></a>
+
+		<ul class="navbar" style ="margin-left: 10%;">
+			<li><a href="{{ path('Home') }}">Home</a></li>
+			<li><a href="{{ path('Quiz') }}">Quiz</a></li>
+			{# <li><a href="#">Services</a></li>
+			<li><a href="#">Blog</a></li> #}
+			<li><a href="{{ path('Feedback') }}">Feedback</a></li>
+		</ul>
+
+		<div class="main">
+         {% if app.user.image %}
+            <a href="{{ asset('uploads/images/' ~ app.user.image) }}">
+               <img  src="{{ asset('uploads/images/' ~ app.user.image) }}" width="40px" style="border-radius : 50%; margin-top: 2%; margin-left: 60%; ">
+            </a>
+			   <a href="{{ path('Profile') }}" class="user">Welcome {{ app.user.name}}</a>
+           {% else %} 
+			   <a href="{{ path('Profile') }}" class="user"><i class="ri-user-fill"></i>Welcome {{ app.user.name}}</a>
+         {% endif %}
+			<a  href="{{ path('app_logout') }}">Logout</a>
+			<div class="bx bx-menu" id="menu-icon"></div>
+		</div>
+        </header>
+        {% for label, messages in app.flashes %}
+				{% for message in messages %}
+					<div class="flash-{{ label }}" style="margin-left: 65rem;  padding-top: 6%; margin-bottom: -7%">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endfor %}
+       {# <br>
+         <p style="margin-left: 70rem;  padding-top: 6%; margin-bottom: -7%">poiuyt</p> #}
+  <div class="container">
+       
+
+
+                   
+        <!-- ===== ===== User Main-Profile ===== ===== -->
+        <section class="userProfile card">
+
+            <div class="profile">
+                {% if app.user.image %}
+                <figure><a href="{{ asset('uploads/images/' ~ app.user.image) }}">
+                <img  src="{{ asset('uploads/images/' ~ app.user.image) }}">
+                </a></figure>
+                {% else %} 
+                    <figure><img  src="{{ asset('image/no-img.png') }}"></figure>
+                
+                {% endif %}
+
+                <button class="editImg" id="pass"><a  href="#">Edit Password</a></button>
+                <form action="" method="post" id="form" style = "Visibility : hidden;">
+                    <span>Your password</span>
+                    <input type="password" required placeholder="Edit password" name="plainPassword" class="box">
+                    <input type="submit" value="Edit password" class="btns" name="send">
+                </form>
+            </div>
+             
+        </section>
+
+        <!-- ===== ===== User Details Sections ===== ===== -->
+        <section class="userDetails card">
+            <div class="userName">
+                <h1 class="name">{{ app.user.name}}</h1>
+                <p>{{ app.user.college}}</p>
+            </div>
+
+
+            <div class="btns">
+                <ul>
+                    <li class="sendMsg">
+                        <a href="{{ path('Edit') }}">Edit Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- ===== ===== Timeline & About Sections ===== ===== -->
+        <section class="timeline_about card">
+            <div class="tabs">
+                <ul>
+                    <li class="about">
+                        <i class="ri-user-3-fill ri"></i>
+                        <span>Contact Information</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="contact_info">
+                <ul>
+                    <li class="phone">
+                        <h1 class="label">Phone:</h1>
+                        <span class="info">{{ app.user.phone}}</span>
+                    </li>
+                    <li class="email">
+                        <h1 class="label">E-mail:</h1>
+                        <span class="info">{{ app.user.email}}</span>
+                    </li>                    
+                </ul>
+            
+            </div>
+
+             <div class="tabs">
+                <ul>
+                    <li class="about">
+                        <i class="ri-user-3-fill ri"></i>
+                        <span>Basic Information</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="basic_info">
+                <ul>
+                    <li class="college">
+                        <h1 class="label">College:</h1>
+                        <span class="info">{{ app.user.college}}</span>
+                    </li>
+
+                    <li class="sex">
+                        <h1 class="label">Gender:</h1>
+                        <span class="info">{{ app.user.gender}}</span>
+                    </li>
+
+                    <li class="sex">
+                        <h1 class="label">Age:</h1>
+                        <span class="info">{{ app.user.age}}</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+
+<footer class="footer" style="margin-top: 5%">
+
+   <section>
+
+      <div class="share">
+         <a href="#" class="fab fa-facebook-f"></a>
+         <a href="#" class="fab fa-twitter"></a>
+         <a href="#" class="fab fa-linkedin"></a>
+         <a href="#" class="fab fa-instagram"></a>
+         <a href="#" class="fab fa-youtube"></a>
+      </div>
+
+      <div class="credit">&copy; copyright @ 2022-2023 | all rights reserved!</div>
+
+   </section>
+
+</footer>
+
+
+<script>
+const btn = document.getElementById('pass');
+
+btn.addEventListener('click', () => {
+  const form = document.getElementById('form');
+
+  if (form.style.visibility === 'hidden') {
+    form.style.visibility = 'visible';
+  } else {
+    form.style.visibility = 'hidden';
+  }
+});
+</script>
+</body>
+{% else %}
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!-- swiper css link  -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/style4.css">
+   <link rel="stylesheet" href="css/style3.css">
+   <link rel="stylesheet" href="css/style5.css">
+
+</head>
+<body style="background-color:white;">
+ <div class="topbar">
+        <div class="toggle">
+          {# <ion-icon name="menu-outline"></ion-icon> #}
+        </div>
+        <div class="search">
+          <label>
+            <input type="text" placeholder="Search Here">
+            <ion-icon name="search-outline"></ion-icon>
+          </label>
+        </div>
+        <div class="user">
+
+        {% if app.user.image %}
+            <a href="{{ asset('uploads/images/' ~ app.user.image) }}">
+               <img  src="{{ asset('uploads/images/' ~ app.user.image) }}">
+            </a>
+           {% else %} 
+			   <a href="{{ path('Profile') }}" class="user"><i class="ri-user-fill"></i></a>
+         {% endif %}
+          
+        </div>
+      </div>
+
+      <div class="container" style="margin-top: -3%;">
+
+        <!-- ===== ===== User Main-Profile ===== ===== -->
+        <section class="userProfile card">
+            <div class="profile">
+                {% if app.user.image %}
+                <figure><a href="{{ asset('uploads/images/' ~ app.user.image) }}">
+                <img  src="{{ asset('uploads/images/' ~ app.user.image) }}">
+                </a></figure>
+                {% else %} 
+                    <figure><img  src="{{ asset('image/no-img.png') }}"></figure>
+                
+                {% endif %}
+
+                <button class="editImg" id="pass" style="border: 1px solid #00E77F;"><a  href="#">Edit Password</a></button>
+                <form action="" method="post" id="form" style = "Visibility : hidden;">
+                    <span>Your password</span>
+                    <input type="password" required placeholder="Edit password" name="plainPassword" class="box" style = "background-color: #f5f5f5;">
+                    <input type="submit" value="Edit password" class="btns" name="send" style="border: 1px solid #00E77F;">
+                </form>
+            </div>
+             
+        </section>
+
+        <!-- ===== ===== User Details Sections ===== ===== -->
+        <section class="userDetails card" style = "background-color: #f5f5f5;">
+            <div class="userName">
+                <h1 class="name" style="color: black;">{{ app.user.name}}</h1>
+                <p>{{ app.user.college}}</p>
+            </div>
+
+
+            <div class="btns" >
+                <ul>
+                    <li class="sendMsg" style="border: 1px solid #00E77F;">
+                        <a href="{{ path('Edit') }}" >Edit Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- ===== ===== Timeline & About Sections ===== ===== -->
+        <section class="timeline_about card" style = "background-color: #f5f5f5;">
+            <div class="tabs">
+                <ul>
+                    <li class="about" style="color: #00E77F;">
+                        <i class="ri-user-3-fill ri"></i>
+                        <span >Contact Information</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="contact_info">
+                <ul>
+                    <li class="phone">
+                        <h1 class="label">Phone:</h1>
+                        <span class="info">{{ app.user.phone}}</span>
+                    </li>
+                    <li class="email">
+                        <h1 class="label">E-mail:</h1>
+                        <span class="info">{{ app.user.email}}</span>
+                    </li>                    
+                </ul>
+            
+            </div>
+
+             <div class="tabs">
+                <ul>
+                    <li class="about" style="color: #00E77F;">
+                        <i class="ri-user-3-fill ri"></i>
+                        <span>Basic Information</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="basic_info">
+                <ul>
+                    <li class="college">
+                        <h1 class="label">College:</h1>
+                        <span class="info">{{ app.user.college}}</span>
+                    </li>
+
+                    <li class="sex">
+                        <h1 class="label">Gender:</h1>
+                        <span class="info">{{ app.user.gender}}</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+      <script>
+const btn = document.getElementById('pass');
+
+btn.addEventListener('click', () => {
+  const form = document.getElementById('form');
+
+  if (form.style.visibility === 'hidden') {
+    form.style.visibility = 'visible';
+  } else {
+    form.style.visibility = 'hidden';
+  }
+});
+</script>
+</body>
+{% endif %}
+
+{% endblock %}

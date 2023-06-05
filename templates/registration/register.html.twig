@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style1.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body  class="scroller" style="background-color: white;">
+	<img class="wave" src="image/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="image/online_test.svg">
+		</div>
+		<div class="login-content">
+			{{ form_start(registrationForm) }}
+				<img src="image/avatar.svg">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		{{ form_widget(registrationForm.name) }}
+           		   </div>
+           		</div>
+
+              <div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-mercury"></i>
+           		   </div>
+           		   <div class="div">
+           		   		{{ form_widget(registrationForm.gender, 
+							{attr:
+								{style: "margin-left: 4%; color: #555; font-size: 1.2rem; margin-top:2%; font-family: 'poppins', sans-serif; "}}) }}
+           		   </div>
+           		</div>
+
+				<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-calendar"></i>
+           		   </div>
+           		   <div class="div">
+           		   		{{ form_widget(registrationForm.age, {attr:{style: "width: 100%; border: none; margin-left: 4%; "}} ) }}
+           		   </div>
+           		</div>
+
+              <div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-university"></i>
+           		   </div>
+           		   <div class="div">
+           		   		{{ form_widget(registrationForm.college, {attr:{style: "width: 100%; border: none; margin-left: 4%; "}} ) }}
+           		   </div>
+           		</div>
+
+              <div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-phone"></i>
+           		   </div>
+           		   <div class="div">
+           		   		{{ form_widget(registrationForm.phone) }}
+           		   </div>
+           		</div>
+
+              <div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-envelope"></i>
+           		   </div>
+           		   <div class="div">
+           		   		 {{ form_widget(registrationForm.email) }}
+           		   </div>
+           		</div>
+
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div" >
+           		    		{{ form_widget(registrationForm.plainPassword, {label: 'Password', id: 'myPassword'}) }}
+            	   </div>
+				   <div class="i" style="position : absolute; margin-left:20em;" onclick="myFunction()"> 
+           		    	<i id="hide1" class="fas fa-eye" style="display:none;"></i>
+						<i id="hide2" class="fas fa-eye-slash"></i>
+           		   </div>
+            	</div>
+				<br>
+
+				<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-image"></i>
+           		   </div>
+           		   <div class="div">
+           		   		 {{ form_widget(registrationForm.image) }}
+           		   </div>
+           		</div>
+
+
+              <div class="div"> 
+              	{{ form_widget(registrationForm.captcha) }}
+            	</div>
+
+            	<input type="submit" class="btn" value="Signin">
+              <a href="{{ path('app_login') }}">Already have an account ? Login</a>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+    <script type="text/javascript" src="js/main1.js"></script>
+	<script>
+		function myFunction(){
+			var x = document.getElementById("myPassword");
+			var y = document.getElementById("hide1");
+			var z = document.getElementById("hide2");
+
+			if(x.type === 'password'){
+				x.type = "text";
+				y.style.display = "block";
+				z.style.display = "none";
+			}
+			else {
+				x.type = "password";
+				y.style.display = "none";
+				z.style.display = "block";
+			}
+		}
+	</script>
+</body>
+</html>
+    
+{% endblock %}

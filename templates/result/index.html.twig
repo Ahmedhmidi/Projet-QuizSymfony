@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ResultController!{% endblock %}
+
+{% block body %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!-- swiper css link  -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style2.css">
+   <link rel="stylesheet" href="css/style3.css">
+   <link rel="stylesheet" href="css/style6.css">
+
+</head>
+<header>
+		<a href="{{ path('Home') }}" class="logo"><i class="ri-home-heart-fill"></i><span>Quiz</span></a>
+
+		<ul class="navbar" style ="margin-left: 10%;">
+			<li><a href="{{ path('Home') }}">Home</a></li>
+			<li><a href="{{ path('Quiz') }}" class="active">Quiz</a></li>
+			{# <li><a href="#">Services</a></li>
+			<li><a href="#">Blog</a></li> #}
+			<li><a href="{{ path('Feedback') }}">Feedback</a></li>
+		</ul>
+
+		<div class="main">
+         {% if app.user.image %}
+            <a href="{{ asset('uploads/images/' ~ app.user.image) }}">
+               <img  src="{{ asset('uploads/images/' ~ app.user.image) }}" width="40px" style="border-radius : 50%; margin-top: 2%; margin-left: 60%; ">
+            </a>
+			   <a href="{{ path('Profile') }}" class="user">Welcome {{ app.user.name}}</a>
+           {% else %} 
+			   <a href="{{ path('Profile') }}" class="user"><i class="ri-user-fill"></i>Welcome {{ app.user.name}}</a>
+         {% endif %}
+			<a  href="{{ path('app_logout') }}">Logout</a>
+			<div class="bx bx-menu" id="menu-icon"></div>
+		</div>
+</header>
+
+
+<section class="" id="home" >
+    <div class="row">
+        <div>
+            <h1 class="heading" style="margin-top : 3em ; color:white"> <span>Congratulations! </span><br>You have just completed your quiz test.</h1>
+            
+
+            <div class="heading-link" style="color:white" >
+                <h1 class="heading" style="color:white"> Final Score: {{result}} </h1>
+                <p style="color:white">Time Spent: <c name="time"> </c></p>
+                
+                
+                {# <p class="" style="color:white">You can also check the correct answers.</p> #}
+            </div>
+
+            
+            <br/>
+            <br/> 
+
+             <div class="" style="margin-left: 50em;">
+
+             <div class="content">
+                 {# <a class="btn " href="{{ path('app_view_answers') }}"><span class="fa fa-check-circle"></span> Check Answers</a> #}
+                <a class="btn " href="{{ path('Quiz') }}"><span class="fa fa-arrow-right"></span> Back to quizzes</a>
+            </div>
+
+                
+            </div>
+
+           
+            <br/>
+            <br/>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer" style="margin-top: 12rem;">
+
+   <section>
+
+      <div class="share">
+         <a href="#" class="fab fa-facebook-f"></a>
+         <a href="#" class="fab fa-twitter"></a>
+         <a href="#" class="fab fa-linkedin"></a>
+         <a href="#" class="fab fa-instagram"></a>
+         <a href="#" class="fab fa-youtube"></a>
+      </div>
+
+      <div class="credit">&copy; copyright @ 2022-2023 | all rights reserved!</div>
+
+   </section>
+
+</footer>
+
+
+<script>
+console.log(sessionStorage.getItem('s1'));
+var s = sessionStorage.getItem('s1');
+document.querySelector("c").innerText = `${s}`;
+</script>
+
+    
+{% endblock %}

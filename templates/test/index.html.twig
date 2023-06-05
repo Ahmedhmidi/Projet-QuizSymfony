@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!-- swiper css link  -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="/css/style2.css">
+   <link rel="stylesheet" href="/css/style3.css">
+   {# <link rel="stylesheet" href="/css/style6.css"> #}
+   <link rel="stylesheet" href="/css/style7.css">
+
+</head>
+
+<body>
+
+<header>
+		<a href="{{ path('Home') }}" class="logo"><i class="ri-home-heart-fill"></i><span>Quiz</span></a>
+
+		<ul class="navbar" style ="margin-left: 10%;">
+			<li><a href="{{ path('Home') }}">Home</a></li>
+			<li><a href="{{ path('Quiz') }}" class="active">Quiz</a></li>
+			{# <li><a href="#">Services</a></li>
+			<li><a href="#">Blog</a></li> #}
+			<li><a href="{{ path('Feedback') }}">Feedback</a></li>
+		</ul>
+
+		<div class="main">
+         {% if app.user.image %}
+            <a href="{{ asset('uploads/images/' ~ app.user.image) }}">
+               <img  src="{{ asset('uploads/images/' ~ app.user.image) }}" width="40px" style="border-radius : 50%; margin-top: 2%; margin-left: 60%; ">
+            </a>
+			   <a href="{{ path('Profile') }}" class="user">Welcome {{ app.user.name}}</a>
+           {% else %} 
+			   <a href="{{ path('Profile') }}" class="user"><i class="ri-user-fill"></i>Welcome {{ app.user.name}}</a>
+         {% endif %}
+			<a  href="{{ path('app_logout') }}">Logout</a>
+			<div class="bx bx-menu" id="menu-icon"></div>
+		</div>
+</header>
+
+
+    <div class="container">
+
+            <div id="game" class="justify-center flex-column" >
+           
+               
+                <form method="POST" action="{{ path('app_calculer') }}">
+                
+                {% for question in questions %}
+                    <h3> - {{ question.question }} </h3><br>
+                   
+                       {% for answer in answers %}
+                        {% if question.NumberQ == answer.NumberQ %} 
+
+                         <div class="choice-container">
+                            <input type="checkbox" name="ans[]" class="choice-prefix" value={{answer.rightAns}}/>
+                            <p class="choice-text">{{ answer.Answer }}</p>
+                        </div>
+                     
+                              {% endif %}
+                {% endfor %}
+                {% endfor %}	
+                              <br>
+                              <input type="submit" name="submit" value="Valider" class="btn"/>        
+                </form>
+            </div>
+                
+                  
+    </div>
+
+     <div id="hud">
+                <div id="hud-item">
+                    <p id="progressText" class="hud-prefix">
+                    
+                    </p>
+                    <div id="progressBar">
+                    <div id="progressBarFull"></div>
+                    </div>
+                </div>
+                <div id="hud-item">
+                    <p class="hud-prefix">
+                    
+                    </p>
+                    <h2 class="hud-main-text" id="count-down">
+                    
+                    </h2>
+                </div>
+            </div>
+
+            
+<footer class="footer">
+
+   <section>
+
+      <div class="share">
+         <a href="#" class="fab fa-facebook-f"></a>
+         <a href="#" class="fab fa-twitter"></a>
+         <a href="#" class="fab fa-linkedin"></a>
+         <a href="#" class="fab fa-instagram"></a>
+         <a href="#" class="fab fa-youtube"></a>
+      </div>
+
+      <div class="credit">&copy; copyright @ 2022-2023 | all rights reserved!</div>
+
+   </section>
+
+</footer>
+
+<script>
+let time = 0;
+let quizTimeInMinutes = time * 60 * 60;
+quizTime = quizTimeInMinutes / 60;
+
+let counting = document.getElementById("count-down");
+function startCountdown(){
+    let quizTimer = setInterval(function() {
+            quizTime++;
+            let sec = Math.floor(quizTime % 60);
+            let min = Math.floor(quizTime / 60) % 60;
+            min = min < 10 ? `0${min}` : min;
+            sec = sec < 10 ? `0${sec}` : sec;
+            counting.innerHTML = `${min} : ${sec}`;
+            var s = `${min} : ${sec}`;
+            sessionStorage.setItem ('s1',s);
+            console.log(sessionStorage.getItem('s1'));
+    }, 1000)
+}
+startCountdown();
+</script>     
+   </body>
+
+    
+{% endblock %}

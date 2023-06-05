@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset password{% endblock %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/style1.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="background-color: white;">
+	<img class="wave" src="/image/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="/image/forgot_pass.svg">
+		</div>
+
+		<div class="login-content">
+			  <form method="post">
+				<img src="/image/avatar.svg">
+				<h2 class="title">Reset Password</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		   <input type="password" name="password" id="inputPass" class="form-control" placeholder="********" required/>
+                                    <input type="hidden"  name="token" value={token}>
+           		   </div>
+				    <div class="i" style="position : absolute; margin-left:20em;" onclick="myFunction()"> 
+           		    	<i id="hide1" class="fas fa-eye" style="display:none;"></i>
+						<i id="hide2" class="fas fa-eye-slash"></i>
+           		   </div>
+           		</div>
+
+               <input type="submit" class="btn" value="Send">
+             </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/main1.js"></script>
+			<script>
+		function myFunction(){
+			var x = document.getElementById("inputPass");
+			var y = document.getElementById("hide1");
+			var z = document.getElementById("hide2");
+
+			if(x.type === 'password'){
+				x.type = "text";
+				y.style.display = "block";
+				z.style.display = "none";
+			}
+			else {
+				x.type = "password";
+				y.style.display = "none";
+				z.style.display = "block";
+			}
+		}
+	</script>
+</body>
+</html>
+
+{% endblock %}

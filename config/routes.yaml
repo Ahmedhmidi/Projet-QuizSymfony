@@ -1,0 +1,48 @@
+index:
+   path: /
+   controller: App\Controller\IndexController::index
+Dashboard:
+   path: /Dashboard
+   controller: App\Controller\Admin\DashboardController::index
+crudQ:
+   path: /crudQ
+   controller: App\Controller\Admin\DashboardController::configureMenuItems
+Feedback:
+   path: /Feedback
+   controller: App\Controller\FeedbackController::index
+Profile:
+   path: /Profile
+   controller: App\Controller\ProfileController::index
+Edit:
+   path: /Edit
+   controller: App\Controller\ProfileController::EditProfile
+Home:
+   path: /Home
+   controller: App\Controller\HomeController::index
+Quiz:
+   path: /Quiz
+   controller: App\Controller\QuizController::index
+QuizAdmin:
+   path: /QuizAdmin
+   controller: App\Controller\QuizAdminController::index
+Test:
+   path: /Test
+   controller: App\Controller\TestController::index
+# app_show:
+#     path: /show/{id}
+#     controller: App\Controller\TestController::show
+Result:
+   path: /Result
+   controller: App\Controller\ResultController::index
+app_calculer:
+    path: /calculer
+    controller: App\Controller\ResultController::calculer
+app_testQuiz:
+    path: /testQuiz/{quiz}
+    controller: App\Controller\HomeController::testQuiz
+ViewAnswers:
+   path: /ViewAnswers
+   controller: App\Controller\ViewAnswersController::index
+app_show:
+    path: /show
+    controller: App\Controller\ViewAnswersController::show

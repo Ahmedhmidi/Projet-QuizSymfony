@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style1.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="background-color: white;">
+	<img class="wave" src="image/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="image/app.svg">
+		</div>
+    
+
+		<div class="login-content">
+			 <form method="post">
+			 {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+			{% for label, messages in app.flashes %}
+				{% for message in messages %}
+					<div class="flash-{{ label }}">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endfor %}
+
+		<br>
+				<img src="image/avatar.svg">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		  <input type="email" placeholder="Email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+           		   </div>
+           		</div>
+
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input type="password" placeholder="Password" name="password" id="myPassword" class="form-control" autocomplete="current-password" required>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            	   </div>
+				   <div class="i" style="position : absolute; margin-left:20em;" onclick="myFunction()"> 
+           		    	<i id="hide1" class="fas fa-eye" style="display:none;"></i>
+						<i id="hide2" class="fas fa-eye-slash"></i>
+           		   </div>
+            	</div>
+            	
+              <span class="title1"><a href="{{ path('forgot_Pass') }}">Forgotten password</a></span>
+               <input type="submit" class="btn" value="Login">
+               <span class="title1"><a href="{{ path('app_register') }}">Create an account</a></span>
+             </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/main1.js"></script>
+		<script>
+		function myFunction(){
+			var x = document.getElementById("myPassword");
+			var y = document.getElementById("hide1");
+			var z = document.getElementById("hide2");
+
+			if(x.type === 'password'){
+				x.type = "text";
+				y.style.display = "block";
+				z.style.display = "none";
+			}
+			else {
+				x.type = "password";
+				y.style.display = "none";
+				z.style.display = "block";
+			}
+		}
+	</script>
+</body>
+</html>
+
+{% endblock %}

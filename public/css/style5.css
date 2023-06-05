@@ -1,0 +1,391 @@
+/* ===== =====  Poppins Google Font  ===== =====  */
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+
+/* ===== =====>> Css Variables  <<===== =====  */
+:root {
+  /* =====>>  Font Color  <<===== */
+  --f1-color: #fff;
+  --f2-color: #000;
+  --f3-color: rgba(0, 0, 0, 0.8);
+  --f4-color: rgba(0, 0, 0, 0.6);
+  --f5-color: #0099cc;
+  --f6-color: #88cee6;
+
+  /* =====>>  Background Color  <<===== */
+  --bg1-color: #fff;
+  --bg2-color: #000;
+  --bg3-color: #33ccff;
+  --bg4-color: #33cc33;
+  --bg5-color: #0099cc;
+  --bg6-color: rgba(0, 0, 0, 0.4);
+  --bg7-color: rgba(0, 0, 0, 0.2);
+  --glass-bg: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.3)
+  );
+  --C-lg-bg: linear-gradient(45deg, #ff3399, #ff9933);
+  --green:#00E77F;
+   --white:#fff;
+   --light-white:#aaa;
+   --black:#3d3d3d;
+   --light-bg:#4b4b4b;
+
+  /* ===== =====>>  Font Size  <<===== =====  */
+  --xxxl-fs: 2.2rem;
+  --xxl-fs: 1.8rem;
+  --xl-fs: 1.6rem;
+  --l-fs: 1.4rem;
+  --m-fs: 1.2rem;
+  --s-fs: 1.1rem;
+  --xs-fs: 1rem;
+
+  /* =====>>  Margin  <<===== */
+  --m-2-5: 2.5rem;
+  --m-1-8: 1.8rem;
+  --m-1-5: 1.5rem;
+  --m-0-6: 0.6rem;
+  --m-0-5: 0.5rem;
+  --m-0-3: 0.3rem;
+
+  /* =====>>  Padding  <<===== */
+  --p-2-5: 2.5rem;
+  --p-1-5: 1.5rem;
+  --p-1-0: 1rem;
+  --p-0-8: 0.8rem;
+  --p-0-5: 0.5rem;
+  --p-0-4: 0.4rem;
+  --p-0-3: 0.3rem;
+}
+
+
+/* ===== =====>>  Main-Container Css  <<===== =====  */
+.container {
+  left: 10%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "header header"
+    "userProfile userDetails"
+    "work_skills timeline_about"
+    "work_skills timeline_about";
+  width: 85%;
+  height: 90vh;
+  /* background: var(--glass-bg); */
+  /* box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 25px rgba(0, 0, 0, 0.08); */
+}
+
+/* ===== =====>>  Container Cards Grid-Area Css Start  <<===== =====  */
+
+.userProfile {
+  grid-area: userProfile;
+}
+
+.work_skills {
+  grid-area: work_skills;
+}
+
+.userDetails {
+  grid-area: userDetails;
+}
+
+.timeline_about {
+  grid-area: timeline_about;
+}
+
+/* ===== =====>>  Container Cards Css  <<===== =====  */
+.container .card {
+
+  background: var( --light-bg);
+  backdrop-filter: blur(3rem);
+  border-radius: 0.5rem;
+}
+
+/* ===== =====>>  User Main-Profile Css Start  <<===== ===== */
+.container .userProfile {
+  left: 15%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  top: 20%;
+  background: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.container .userProfile .profile figure img {
+  width: 30rem;
+  height: 30rem;
+  margin-left: 15%;
+  border-radius: 0.5rem;
+
+}
+.container .userProfile .profile form .btns{
+  margin-left: 37%;
+  border-radius: 0.5rem;
+  font-size: var(--s-fs);
+  font-weight: 800;
+  background: var(--white);
+  color: var(--green);
+  padding: var(--p-0-4) var(--p-1-0);
+
+}
+
+.container .userProfile .profile form .btns:hover{
+  font-size: var(--s-fs);
+  font-weight: 800;
+  background: var(--green);
+  color: var(--white);
+}
+.container .userProfile .profile button {
+  margin-top: 5%;
+  margin-left: 37%;
+  border-radius: 0.5rem;
+  font-size: var(--s-fs);
+  font-weight: 800;
+  background: var(--white);
+  color: var(--green);
+  padding: var(--p-0-4) var(--p-1-0);
+
+}
+.container .userProfile .profile button a{
+  color: var(--green);
+
+}
+
+.container .userProfile .profile button:hover{
+  font-size: var(--s-fs);
+  font-weight: 800;
+  background: var(--green);
+  color: var(--white);
+}
+.container .userProfile .profile button a:hover{
+  color: var(--white);
+
+}
+
+.userProfile .profile form{
+  flex:1 1 40rem;
+}
+
+.userProfile .profile form .box{
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border-radius: .5rem;
+  background-color: var(--light-bg);
+  font-size: 1.8rem;
+  color:var(--white);
+  padding:1.4rem;
+  text-transform: none;
+}
+
+.userProfile .profile form span{
+  font-size: 1.6rem;
+  color:var(--light-white);
+}
+
+.userProfile .profile form .radio{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.userProfile .profile form .radio label{
+  font-size: 1.6rem;
+  color:var(--light-white);
+  margin-left: .5rem;
+  cursor: pointer;
+}
+
+.userProfile .profile form .radio input{
+  appearance: none;
+  height: 2rem;
+  width: 2rem;
+  background-color: var(--light-white);
+  cursor: pointer;
+}
+
+/* ===== =====>>  User Details Css Start  <<===== ===== */
+.userDetails {
+  margin-top: 16%;
+  margin-bottom: 33%;
+  margin-left: 12%;
+  width: 70%;
+  position: static;
+  padding: var(--p-1-5) var(--p-2-5);
+}
+
+.userDetails .userName h1 {
+  font-size: var(--xxxl-fs);
+}
+
+.userDetails .userName p {
+  font-size: var(--m-fs);
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: var(--m-1-8);
+}
+
+.userDetails .btns ul,
+.userDetails .btns ul li {
+  display: flex;
+  align-items: center;
+}
+
+.userDetails .btns ul li {
+  margin-left: 85%;
+  border-radius: 0.5rem;
+  font-size: var(--s-fs);
+  background: var(--white);
+  padding: var(--p-0-4) var(--p-1-0);
+}
+
+.userDetails .btns ul li a {
+  color: var(--green);
+  font-weight: 800;
+  font-size: var(--s-fs);
+}
+
+.userDetails .btns ul li:hover {
+  font-size: var(--s-fs);
+  background: var(--green);
+  padding: var(--p-0-4) var(--p-1-0);
+}
+
+.userDetails .btns ul li a:hover {
+  color: var(--white);
+  font-weight: 800;
+  font-size: var(--s-fs);
+}
+
+/* ===== =====>>  Timeline & About Css Start  <<===== ===== */
+.timeline_about {
+  /* margin-top: 5%; */
+  margin-top: -30%;
+  width: 70%;
+  padding: 2% 3%;
+  /* padding: var(--p-2-5); */
+  margin-bottom: 15%;
+  position: static;
+  margin-right: 18%;
+}
+
+.timeline_about .tabs ul {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--m-2-5);
+}
+
+.timeline_about .tabs ul::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 0.2rem;
+  background: var(--bg6-color);
+}
+
+.timeline_about .tabs ul li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: var(--m-2-5);
+  padding-bottom: var(--p-0-8);
+}
+
+.timeline_about .tabs ul li span {
+  font-size: var(--l-fs);
+  font-weight: 500;
+}
+
+.timeline_about .tabs ul li .ri {
+  margin-right: var(--m-0-5);
+}
+
+.timeline_about .contact_info ul,
+.timeline_about .basic_info ul {
+  margin-bottom: var(--m-1-5);
+}
+
+.timeline_about .contact_info ul li,
+.timeline_about .basic_info ul li {
+  display: flex;
+  margin: var(--m-0-5) 0;
+}
+
+.timeline_about .contact_info ul li h1,
+.timeline_about .basic_info ul li h1 {
+  font-weight: 800;
+  font-size: 1.5rem;
+  min-width: 15rem;
+  color: var(--f3-color);
+}
+
+.timeline_about .contact_info ul li span,
+.timeline_about .basic_info ul li span {
+  font-size: var(--m-fs);
+}
+
+.timeline_about .contact_info ul .phone span,
+.timeline_about .contact_info ul .email span,
+.timeline_about .basic_info ul .college span,
+.timeline_about .basic_info ul .sex span{
+  /* margin-bottom: var(--m-1-8); */
+  margin-top: 0.5%;
+  font-size: var(--m-fs);
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 1.6rem;
+}
+
+@media screen and (max-width: 768px) {
+
+    /* ===== =====>>  Container Css Start  <<===== ===== */
+    .container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "userProfile"
+        "userDetails"
+        "work_skills"
+        "timeline_about";
+      overflow-x: hidden;
+      overflow-y: inherit;
+      padding: 0;
+      width: 90%;
+      height: 100%;
+      box-shadow: none;
+    }
+  
+    /* ===== =====>>  Container Card Css Start  <<===== ===== */
+    .container .card {
+      backdrop-filter: none;
+    }
+  
+    .userDetails {
+      margin-bottom: 3rem;
+    }
+  
+    .container::before,
+    .container::after {
+      display: none;
+    }
+  
+    /* ===== =====>>  Header/Navbar Css Start  <<===== ===== */
+    .container header {
+      padding: 2.5rem;
+    } 
+  }
+  
+  @media screen and (max-width: 500px) {
+    .container {
+      width: 100%;
+      overflow: initial;
+    }
+  }
+  
